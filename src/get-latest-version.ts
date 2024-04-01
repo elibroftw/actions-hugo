@@ -15,7 +15,8 @@ export function getURL(org: string, repo: string, api: string): string {
 export async function getLatestVersion(org: string, repo: string, api: string): Promise<string> {
   const url = getURL(org, repo, api);
   const response = await fetch(url);
-  const json = await response.json();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const json: any = await response.json();
   let latestVersion = '';
   if (api === 'brew') {
     latestVersion = json.versions.stable;
